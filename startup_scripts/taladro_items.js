@@ -1,10 +1,8 @@
 StartupEvents.registry('item', event => {
-  event.create('steel_coated_ingot_1').displayName('Lingote Revestido de Acero I')
-  event.create('steel_coated_ingot_2').displayName('Lingote Revestido de Acero II')
-  event.create('steel_coated_ingot_3').displayName('Lingote Revestido de Acero III')
+  event.create('steel_coated_ingot').displayName('Lingote Revestido de Acero')
+  event.create('incomplete_coated_ingot').displayName('Lingote Revestido Incompleto')
   event.create('fragile_drill_head').displayName('Cabeza de Taladro Frágil')
   event.create('heated_drill_head').displayName('Cabeza de Taladro Caliente')
   event.create('tempered_drill_head').displayName('Cabeza de Taladro Templada')
   event.create('incomplete_drill_head').displayName('Cabeza de Taladro Incompleta')
-  event.create('drill_head_incomplete_sequence').displayName('cabeza incompleta')
 })

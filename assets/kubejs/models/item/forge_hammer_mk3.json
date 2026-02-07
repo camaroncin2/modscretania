@@ -1,0 +1,6 @@
+{
+    "parent": "kubejs:item/cretania_forge_hammer",
+    "textures": {
+        "layer0": "kubejs:item/cretania_forge_hammer"
+    }
+}

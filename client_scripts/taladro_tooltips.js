@@ -1,9 +1,31 @@
-ItemEvents.tooltip(event => {
-  event.add('kubejs:steel_coated_ingot', ['Avance: 3 Deploys', 'Secuencia: hierro + steel_sheet x3'])
-  event.add('kubejs:incomplete_coated_ingot', ['Secuencia: ítem transicional'])
-  event.add('kubejs:incomplete_drill_head', ['Secuencia: ítem transicional'])
-  event.add('kubejs:fragile_drill_head', ['Secuencia: resultado'])
-  event.add('kubejs:heated_drill_head', ['Proceso: blasting'])
-  event.add('kubejs:tempered_drill_head', ['Proceso: splashing'])
-  event.add('create:mechanical_drill', ['Final: deployer + andesite casing'])
+ItemEvents.modification(event => {
+
+  event.modify('kubejs:hot_raw_steel', item => {
+    item.displayName = '§5§oAcero Incandescente'
+  })
+
+  event.modify('kubejs:steel_coated_ingot', item => {
+    item.displayName = '§5§oLingote Revestido de Acero'
+  })
+
+  event.modify('kubejs:incomplete_drill_head', item => {
+    item.displayName = '§5§oCabezal de Taladro Incompleto'
+  })
+
+  event.modify('kubejs:fragile_drill_head', item => {
+    item.displayName = '§5§oCabezal de Taladro Frágil'
+  })
+
+  event.modify('kubejs:heated_drill_head', item => {
+    item.displayName = '§5§oCabezal de Taladro Al Rojo Vivo'
+  })
+
+  event.modify('kubejs:tempered_drill_head', item => {
+    item.displayName = '§5§oCabezal de Taladro Templado'
+  })
+
+  event.modify('create:mechanical_drill', item => {
+    item.displayName = '§5§oTaladro Mecánico'
+  })
+
 })

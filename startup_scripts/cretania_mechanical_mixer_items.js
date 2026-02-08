@@ -29,10 +29,15 @@ StartupEvents.registry('item', event => {
     .displayName('Batidor Forjado')
     .texture('layer0', 'kubejs:item/hot_mechanical_whisk')
     .maxStackSize(64);
+});
 
-  // Register Cogwheel Casing (Carcasa de Engranaje)
+StartupEvents.registry('block', event => {
+  // Register Cogwheel Casing (Carcasa de Engranaje) como Bloque
   event.create('cogwheel_casing')
     .displayName('Carcasa de Engranaje')
-    .texture('layer0', 'kubejs:item/cogwheel_casing')
-    .maxStackSize(64);
+    .material('wood') // Material base (madera por el engranaje)
+    .hardness(3.0)    // Dureza similar a un bloque de madera/máquina
+    .resistance(3.0)
+    .tagBlock('minecraft:mineable/axe') // Se rompe con hacha
+    .requiresTool(true);
 });

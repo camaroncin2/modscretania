@@ -8,10 +8,10 @@ ServerEvents.recipes(event => {
   // 2. Splashing: Residuos Impuros -> Plomo en Bruto
   event.recipes.create.splashing('kubejs:raw_lead', 'kubejs:impure_lead_residue');
 
-  // 3. Mixing (Heated): Plomo en Bruto + 2 Cobre -> Cobre Maleable
+  // 3. Mixing (Heated): Plomo en Bruto + 3 Cobre -> Cobre Maleable
   event.recipes.create.mixing('kubejs:malleable_copper', [
     'kubejs:raw_lead',
-    '2x minecraft:copper_ingot'
+    '3x kubejs:crude_copper'
   ]).heated();
 
   // 4. Mixing (Heated): Tin Ingot + Zinc Ingot -> Zinc Adherible

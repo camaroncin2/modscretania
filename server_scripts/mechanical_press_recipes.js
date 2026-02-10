@@ -7,6 +7,80 @@ ServerEvents.recipes(event => {
     result: { item: 'kubejs:steel_coated_rod', count: 2 }
   }).id('kubejs:steel_coated_rod_rolling')
 
+  // Acero al Plomo Caliente (Mixer con lava)
+  event.remove({ id: 'kubejs:hot_leaded_steel_mixing' })
+  event.custom({
+    type: 'create:mixing',
+    ingredients: [
+      { item: 'kubejs:hot_raw_steel' },
+      { item: 'kubejs:raw_lead' },
+      { fluid: 'minecraft:lava', amount: 1000 }
+    ],
+    results: [
+      { item: 'kubejs:hot_leaded_steel', count: 1 }
+    ]
+  }).id('kubejs:hot_leaded_steel_mixing')
+
+  // Cabeza de Prensa Caliente (3 deployers con hammer mk1)
+  event.remove({ id: 'kubejs:mechanical_press_head_heated_sequence' })
+  event.custom({
+    type: 'create:sequenced_assembly',
+    ingredient: { item: 'kubejs:hot_leaded_steel' },
+    loops: 1,
+    results: [{ item: 'kubejs:mechanical_press_head_heated', count: 1 }],
+    sequence: [
+      {
+        type: 'create:deploying',
+        ingredients: [{ item: 'kubejs:hot_leaded_steel' }, { item: 'kubejs:forge_hammer_mk1' }],
+        results: [{ item: 'kubejs:hot_leaded_steel' }],
+        keepHeldItem: true
+      },
+      {
+        type: 'create:deploying',
+        ingredients: [{ item: 'kubejs:hot_leaded_steel' }, { item: 'kubejs:forge_hammer_mk1' }],
+        results: [{ item: 'kubejs:hot_leaded_steel' }],
+        keepHeldItem: true
+      },
+      {
+        type: 'create:deploying',
+        ingredients: [{ item: 'kubejs:hot_leaded_steel' }, { item: 'kubejs:forge_hammer_mk1' }],
+        results: [{ item: 'kubejs:hot_leaded_steel' }],
+        keepHeldItem: true
+      }
+    ],
+    transitionalItem: { item: 'kubejs:hot_leaded_steel' }
+  }).id('kubejs:mechanical_press_head_heated_sequence')
+
+  // Lavado: Caliente → Templado
+  event.remove({ id: 'kubejs:mechanical_press_head_tempered_splash' })
+  event.recipes.create.splashing(
+    ['kubejs:mechanical_press_head_tempered'],
+    'kubejs:mechanical_press_head_heated'
+  ).id('kubejs:mechanical_press_head_tempered_splash')
+
+  // Deployer final: Templado → Mecánica
+  event.remove({ id: 'kubejs:mechanical_press_head_mech_deploy' })
+  event.remove({ id: 'kubejs:mechanical_press_head_mech_sequence' })
+  event.custom({
+    type: 'create:sequenced_assembly',
+    ingredient: { item: 'kubejs:mechanical_press_head_tempered' },
+    loops: 1,
+    results: [{ item: 'kubejs:mechanical_press_piston', count: 1 }],
+    sequence: [
+      {
+        type: 'create:deploying',
+        ingredients: [
+          { item: 'kubejs:mechanical_press_head_tempered' },
+          { item: 'kubejs:forge_hammer_mk1' }
+        ],
+        results: [
+          { item: 'kubejs:mechanical_press_head_tempered' }
+        ],
+        keepHeldItem: true
+      }
+    ],
+    transitionalItem: { item: 'kubejs:mechanical_press_head_tempered' }
+  }).id('kubejs:mechanical_press_head_mech_sequence')
   event.remove({ id: 'kubejs:piston_extension_half_deploy' })
   event.recipes.create.deploying(
     'kubejs:piston_extension_half',
